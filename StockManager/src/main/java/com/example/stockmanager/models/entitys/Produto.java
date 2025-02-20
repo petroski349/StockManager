@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "produtos")
-public class Produtos {
+@Table(name = "produto")
+public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +24,9 @@ public class Produtos {
     private double precoCusto;
     @Column(name = "precoVenda",nullable = false)
     private double precoVenda;
-    @Column(name = "fornecedorId",nullable = false)
-    private double fornecedorId;
-    @Column(name = "data_criacao")
-    private LocalDateTime data_criacao;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fornecedorId", nullable = false)
+    private Fornecedor fornecedorId;
+    @Column(name = "dataCriacao")
+    private LocalDateTime dataCriacao;
 }
